@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+  <script src="p5.js"></script>
+  <script src="p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+  <div class="background">
+    <div class="header">
+      <div class="message text-area section">
+        <p id="message"></p>
+      </div>
+      <div class="user text-area section">
+        <p>  Aiko  </p>
+      </div>
+    </div>
+    <div class="exercise section">
+      <iframe src="./exerciseOne.html" title="exercise"></iframe>
+      <button type="button" class="btn btn-outline-success next-button"> Next >>> </button>
+    </div>
+  </div>
+  <script>
+    var message = document.getElementById("message");
+    message.textContent = "Watch the animation for the Activity!";
+  </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+div.background {
+  width: 100%;
+  height: 100%;
+  background: #AAF0D1;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  flex-direction: column;
+}
+div#app-title {
+  margin: 0 auto;
+  padding: 100px;
+  text-align: center;
+}
+div > h1 {
+  color: green;
+}
+div > p {
+  color: green;
+  margin: 0px;
+}
+div#app-title > p {
+  margin-bottom: 50px;
+}
+button.btn {
+  border-radius: 30px;
+  border:2px solid #82D8AE;
+  background: #AAF0D1;
+}
+button > a {
+  color: green;
+  text-decoration: none;
+}
+button > a:hover {
+  color: green;
+  text-decoration: none;
+}
+div.section {
+  border-radius: 30px;
+  border:2px solid #82D8AE;
+  background: #82D8AE;
+}
+div.header {
+  margin: 60px auto 10px;
+  width: 760px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  justify-content: space-between;
+}
+div.header > div.text-area {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #AAF0D1;
+}
+div.exercise {
+  display: inline-block;
+  height: 500px;
+  width: 760px;
+}
+div.exercise > iframe {
+  margin: 30px 30px auto;
+  height: 400px;
+  width: 700px;
+  border-radius: 30px;
+  border:2px solid #82D8AE;
+  background: #AAF0D1;
+}
+button.next-button {
+  display: block;
+  margin: 5px 30px 0 auto;
+}
