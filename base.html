@@ -9,23 +9,41 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 </head>
 <body>
-  <div class="background">
-    <div class="header">
-      <div class="message text-area section">
-        <p id="message"></p>
-      </div>
-      <div class="user text-area section">
-        <p>  Aiko  </p>
-      </div>
+  <div class="background page-container">
+    <div class="side-bar">
+      <button type="button" class="btn btn-outline-success next-button" onclick="showExe1()">Exercise 1</button>
+      <button type="button" class="btn btn-outline-success next-button" onclick="showExe2()">Exercise 2</button>
+      <button type="button" class="btn btn-outline-success next-button" onclick="showExe3()">Exercise 3</button>
     </div>
-    <div class="exercise section">
-      <iframe src="./exerciseOne.html" title="exercise"></iframe>
-      <button type="button" class="btn btn-outline-success next-button"> Next >>> </button>
+    <div class="exe-contents">
+      <div class="header">
+        <div class="message text-area section">
+          <p id="message"></p>
+        </div>
+        <div class="user text-area section">
+          <p>  Aiko  </p>
+        </div>
+      </div>
+      <div class="exercise section">
+        <!-- <iframe src="./exerciseOne.html" title="exercise" id="exeWindow"></iframe> -->
+        <iframe src="./exe1.html" title="exercise" id="exeWindow"></iframe>
+        <button type="button" class="btn btn-outline-success next-button"> Next >>> </button>
+      </div>
     </div>
   </div>
   <script>
     var message = document.getElementById("message");
     message.textContent = "Watch the animation for the Activity!";
+
+    function showExe1() {
+      document.getElementById("exeWindow").src = "exe1.html"
+    }
+    function showExe2() {
+      document.getElementById("exeWindow").src = "exe2.html"
+    }
+    function showExe3() {
+      document.getElementById("exeWindow").src = "exe3.html"
+    }
   </script>
 </body>
 </html>
