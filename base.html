@@ -11,9 +11,9 @@
 <body>
   <div class="background page-container">
     <div class="side-bar">
-      <button type="button" class="btn btn-outline-success next-button" onclick="showExe1()">Exercise 1</button>
-      <button type="button" class="btn btn-outline-success next-button" onclick="showExe2()">Exercise 2</button>
-      <button type="button" class="btn btn-outline-success next-button" onclick="showExe3()">Exercise 3</button>
+      <button type="button" id="1" class="btn btn-outline-success next-button" onclick="onClickExe(this.id)">Exercise 1</button>
+      <button type="button" id="2" class="btn btn-outline-success next-button" onclick="onClickExe(this.id)">Exercise 2</button>
+      <button type="button" id="3" class="btn btn-outline-success next-button" onclick="onClickExe(this.id)">Exercise 3</button>
     </div>
     <div class="exe-contents">
       <div class="header">
@@ -21,28 +21,51 @@
           <p id="message"></p>
         </div>
         <div class="user text-area section">
-          <p>  Aiko  </p>
+          <p>  Hello User!  </p>
         </div>
       </div>
       <div class="exercise section">
-        <!-- <iframe src="./exerciseOne.html" title="exercise" id="exeWindow"></iframe> -->
-        <iframe src="./exe1.html" title="exercise" id="exeWindow"></iframe>
-        <button type="button" class="btn btn-outline-success next-button"> Next >>> </button>
+        <iframe src="./exe1_instruction.html" title="exercise" id="exeWindow"></iframe>
+        <button type="button" class="btn btn-outline-success next-button" onclick="onClickNext()"> Next >>> </button>
       </div>
     </div>
   </div>
   <script>
     var message = document.getElementById("message");
-    message.textContent = "Watch the animation for the Activity!";
+    var current_exe = 1; // 1, 2 or 3
+    var current_state = 'instruction'; // instruction, exercise, congrats
+    var message_instuction = "Watch the instruction for the Activity!";
+    var message_exe = "Now, perform the Activity you saw.";
+    var message_congrats = "Good job!";
+    message.textContent = message_instuction;
 
-    function showExe1() {
-      document.getElementById("exeWindow").src = "exe1.html"
+    function refresh() {
+      current_state = 'instruction';
+      message.textContent = message_instuction
     }
-    function showExe2() {
-      document.getElementById("exeWindow").src = "exe2.html"
+    function onClickExe(exeNumber){
+      document.getElementById("exeWindow").src = `exe${exeNumber}_instruction.html`;
+      current_exe = exeNumber;
+      refresh();
     }
-    function showExe3() {
-      document.getElementById("exeWindow").src = "exe3.html"
+
+    function switchState(exeNumber) {
+      if (current_state == 'instruction') {
+          document.getElementById("exeWindow").src = `exe${exeNumber}.html`;
+          current_state = 'exercise';
+          message.textContent = message_exe;
+      } else if (current_state == 'exercise') {
+          document.getElementById("exeWindow").src = "congrats.html";
+          current_state = 'congrats';
+          message.textContent = message_congrats;
+      } else {
+          document.getElementById("exeWindow").src = `exe${exeNumber}_instruction.html`;
+          refresh();
+      }
+    }
+
+    function onClickNext() {
+      switchState(current_exe)
     }
   </script>
 </body>
