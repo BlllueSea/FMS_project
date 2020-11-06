@@ -11,9 +11,9 @@
 <body>
   <div class="background page-container">
     <div class="side-bar">
-      <button type="button" id="1" class="btn btn-outline-success next-button" onclick="onClickExe(this.id)">Exercise 1</button>
-      <button type="button" id="2" class="btn btn-outline-success next-button" onclick="onClickExe(this.id)">Exercise 2</button>
-      <button type="button" id="3" class="btn btn-outline-success next-button" onclick="onClickExe(this.id)">Exercise 3</button>
+      <button type="button" id="1" class="btn btn-outline-success exe-button active" onclick="onClickExe(this.id)">Typing Exercise</button>
+      <button type="button" id="2" class="btn btn-outline-success exe-button" onclick="onClickExe(this.id)">Drag&Drop Exercise</button>
+      <button type="button" id="3" class="btn btn-outline-success exe-button" onclick="onClickExe(this.id)">Track the Pattern Exercise</button>
     </div>
     <div class="exe-contents">
       <div class="header">
@@ -34,19 +34,26 @@
     var message = document.getElementById("message");
     var current_exe = 1; // 1, 2 or 3
     var current_state = 'instruction'; // instruction, exercise, congrats
-    var message_instuction = "Watch the instruction for the Activity!";
-    var message_exe = "Now, perform the Activity you saw.";
-    var message_congrats = "Good job!";
+    var button_element;
+    const message_instuction = "Watch the instruction for the Activity!";
+    const message_exe = "Now, perform the Activity you saw.";
+    const message_congrats = "Good job!";
     message.textContent = message_instuction;
 
-    function refresh() {
+    function refresh(ClickedExeNum) {
       current_state = 'instruction';
-      message.textContent = message_instuction
+      message.textContent = message_instuction;
+      var new_class_idx = parseInt(ClickedExeNum)-1;
+      var current_class_idx = current_exe-1;
+      button_element = document.getElementsByClassName("exe-button")[current_class_idx];
+      button_element.classList.remove("active");
+      button_element = document.getElementsByClassName("exe-button")[new_class_idx];
+      button_element.classList.add("active");
     }
-    function onClickExe(exeNumber){
-      document.getElementById("exeWindow").src = `exe${exeNumber}_instruction.html`;
-      current_exe = exeNumber;
-      refresh();
+    function onClickExe(ClickedExeNum){
+      document.getElementById("exeWindow").src = `exe${ClickedExeNum}_instruction.html`;
+      refresh(ClickedExeNum);
+      current_exe = ClickedExeNum;
     }
 
     function switchState(exeNumber) {
@@ -60,7 +67,7 @@
           message.textContent = message_congrats;
       } else {
           document.getElementById("exeWindow").src = `exe${exeNumber}_instruction.html`;
-          refresh();
+          refresh(current_exe);
       }
     }
 
