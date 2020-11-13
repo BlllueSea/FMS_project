@@ -76,7 +76,8 @@ function keyTyped() {
       }
     }
   if(lettersCorrect == 3) {
-    score++
+    score++;
+    parent.score_from_activity = score;
     stroke('black');
     strokeWeight(2)
     fill('#AAF0D1');
@@ -106,5 +107,5 @@ function keyPressed() {
     fill('black')
     textSize(50)
     text(key, 320, 190); // Draw at coordinate (20,75)
-}
+  }
 }

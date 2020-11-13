@@ -1,3 +1,11 @@
+// sound when correct
+let synth;
+// setting a score 0
+let score = 0;
+// pink circle done
+let pcdone = false;
+// magenta circle done
+let mcdone = false;
 let grabbed = false;
   let shapeX;
   let shapeY;
@@ -14,11 +22,30 @@ function setup() {
   createCanvas(700, 400);
   background('#AAF0D1');
 
-  shapeX = 600;
+  shapeX = 550;
   shapeY = 100;
 
-  shapeX2 = 600;
+  shapeX2 = 550;
   shapeY2 = 300;
+
+  //definfing synth
+  synth = new p5.PolySynth();
+
+}
+//function to play the sound
+
+function playSynth()
+{
+  userStartAudio();
+
+  // note velocity (volume, from 0 to 1)
+  let velocity = (0.5);
+  // time from now (in seconds)
+  let time = 0;
+  // note duration (in seconds)
+  let dur = 1/6;
+
+  synth.play('G3', velocity, time, dur);
 }
 
 function draw()
@@ -28,13 +55,13 @@ function draw()
   line(0, 200, 700, 200);
   stroke(1);
 
-  //Circles on the top left
+  //Pink Circle on the top left
   fill ("pink")
   strokeWeight(2);
   stroke(90);
   circle(100, 100, 100);
 
-  //Circles on the bottom left
+  //Magenta Circles on the bottom left
   strokeWeight(2);
   stroke(90);
   fill ("magenta")
@@ -53,17 +80,17 @@ function draw()
 
   //Drag towards enclosure text on bottom
   textSize(20);
-  text('Drag towards enclosure', 480, 390);
+  text('Drag towards enclosure', 460, 390);
   fill(0, 102, 153);
 
 
   //Drag towards enclosure text on top
   textSize(20);
-  text('Drag towards enclosure', 480, 190);
+  text('Drag towards enclosure', 460, 190);
   fill(0, 102, 153);
 
 
- //ARROW 1 ---------------------------------------------------------
+//ARROW 1 ---------------------------------------------------------
   beginShape();
 
   strokeWeight(3);
@@ -132,6 +159,11 @@ function draw()
   fill ("magenta")
   ellipse(shapeX2, shapeY2, diameter2, diameter2);
 
+    //Score board
+  fill ("white");
+  text('Score', 600, 50);
+  text (score, 625, 90);
+
 }
 
 function mousePressed ()
@@ -139,31 +171,66 @@ function mousePressed ()
 {
    let d = dist(mouseX, mouseY, shapeX, shapeY);
    let d2 = dist(mouseX, mouseY, shapeX2, shapeY2);
-  if (d < radius) {
-
+   if (d < radius)
+    {
     grabbed = "shape1";
     } else if (d2 < radius){
       grabbed = "shape2";
     }
 
   else grabbed = false ;
-
 }
-  function mouseReleased () {
-    grabbed = false;
+  function mouseReleased ()
+{
+   let d = dist(mouseX, mouseY, 100, 100);
+   let d2 = dist(mouseX, mouseY, 100, 300);
+//circle shape
+  if (d < radius && grabbed == 'shape1')
+   {
+     pcdone = true
+   }
+// magenta circle
+  if (d2 < radius && grabbed == 'shape2')
+   {
+     mcdone = true
+   }
+
+if (pcdone == true && mcdone== true)
+  {
+    score++;
+    parent.score_from_activity = score;
+    
+    shapeX = 550;
+    shapeY = 100;
+
+    shapeX2 = 550;
+    shapeY2 = 300;
+
+    stroke('black');
+    strokeWeight(2)
+    fill('black');
+    rect(195, 65, 295, 75)
+    rect(610, 60, 50, 50)
+    playSynth();
+
+
+    pcdone = false;
+    mcdone = false;
+
   }
+      grabbed = false;
+  }
+
   function mouseDragged()
 {
   // print ('dragged');
     if (grabbed == "shape1")
-
     {
     shapeX = mouseX;
     shapeY = mouseY;
     }
 
   if (grabbed == "shape2")
-
     {
     shapeX2 = mouseX;
     shapeY2 = mouseY;

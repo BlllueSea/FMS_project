@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="exercise section">
-        <iframe src="./exe1_instruction.html" title="exercise" id="exeWindow"></iframe>
+        <iframe src="./exe1_instruction.html" title="exercise" id="exeWindow" name="exeWindow"></iframe>
         <button type="button" class="btn btn-outline-success next-button" onclick="onClickNext()"> Next >>> </button>
       </div>
     </div>
@@ -35,6 +35,7 @@
     var current_exe = 1; // 1, 2 or 3
     var current_state = 'instruction'; // instruction, exercise, congrats
     var button_element;
+    var score_from_activity = 0;
     const message_instuction = "Watch the instruction for the Activity!";
     const message_exe = "Now, perform the Activity you saw.";
     const message_congrats = "Good job!";
@@ -42,6 +43,7 @@
 
     function refresh(ClickedExeNum) {
       current_state = 'instruction';
+      score_from_activity = 0;
       message.textContent = message_instuction;
       var new_class_idx = parseInt(ClickedExeNum)-1;
       var current_class_idx = current_exe-1;
@@ -73,6 +75,10 @@
 
     function onClickNext() {
       switchState(current_exe)
+    }
+    function setUpFrame() {
+      var frame = window.frames['exeWindow'];
+      frame.yourMethod(score_from_activity, parseInt(current_exe));
     }
   </script>
 </body>

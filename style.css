@@ -59,7 +59,7 @@ div.side-bar {
   width: 200px;
   padding: 100px 10px 0 7px;
   margin: 0 30px 0 0;
-  border-right: 2px solid #82D8AE;
+  border-right: 2px solid #A1BFB2;
 }
 div.exe-contents {
   display: inline-block;
@@ -93,7 +93,12 @@ div.exercise > iframe {
   border:2px solid #82D8AE;
   background: #AAF0D1;
 }
-button.next-button, button.exe-button {
+button.next-button {
   display: block;
   margin: 5px 30px 0 auto;
+}
+button.exe-button {
+  display: block;
+  margin: 5px 0 5px 5px;
+  width: 150px;
 }
