@@ -219,8 +219,8 @@ function mousePressed ()
 
 if (pcdone == true && mcdone== true)
   {
-
-    score++
+    score++;
+    parent.score_from_activity = score;
     playSynth();
 
     shapeX = 550;
