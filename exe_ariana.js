@@ -1,12 +1,14 @@
 // sound when correct
 let synth;
+
 // setting a score 0
 let score = 0;
 // pink circle done
+
 let pcdone = false;
 // magenta circle done
-let mcdone = false;
-let grabbed = false;
+  let mcdone = false;
+  let grabbed = false;
   let shapeX;
   let shapeY;
   const radius = 50;
@@ -21,6 +23,7 @@ let grabbed = false;
 function setup() {
   createCanvas(700, 400);
   background('#AAF0D1');
+  reset = background('#AAF0D1');
 
   shapeX = 550;
   shapeY = 100;
@@ -52,8 +55,8 @@ function draw()
 
 {
   background('#AAF0D1')
-  line(0, 200, 700, 200);
   stroke(1);
+  line(0, 200, 700, 200);
 
   //Pink Circle on the top left
   fill ("pink")
@@ -89,11 +92,10 @@ function draw()
   text('Drag towards enclosure', 460, 190);
   fill(0, 102, 153);
 
-
 //ARROW 1 ---------------------------------------------------------
   beginShape();
 
-  strokeWeight(3);
+  strokeWeight(2);
   stroke(90);
   //point
   vertex(350, 100);
@@ -159,11 +161,31 @@ function draw()
   fill ("magenta")
   ellipse(shapeX2, shapeY2, diameter2, diameter2);
 
-    //Score board
-  fill ("white");
-  text('Score', 600, 50);
-  text (score, 625, 90);
+  //rec
+  stroke('black');
+  strokeWeight(2)
+  fill('#AAF0D1');
+  rect(610, 60, 50, 50)
+  textSize(30);
+  noStroke();
 
+  // text (score, 625, 90);
+ strokeWeight(2);
+  stroke(90);
+  fill (0, 102, 153);
+  text (score, 627, 97);
+  strokeWeight(2);
+  stroke(90);
+  text('Score', 595, 50);
+
+ if (score == 10)
+      {
+      // similar to mouse released
+        background('#AAF0D1')
+        line(350, 0, 175, 700);
+        text('Great Job on Getting 10 in a Row!', 130, 120);
+        text('Click "Next" for the next screen', 130, 300);
+      }
 }
 
 function mousePressed ()
@@ -197,40 +219,36 @@ function mousePressed ()
 
 if (pcdone == true && mcdone== true)
   {
-    score++;
-    parent.score_from_activity = score;
-    
+
+    score++
+    playSynth();
+
     shapeX = 550;
     shapeY = 100;
 
     shapeX2 = 550;
     shapeY2 = 300;
 
-    stroke('black');
-    strokeWeight(2)
-    fill('black');
-    rect(195, 65, 295, 75)
-    rect(610, 60, 50, 50)
-    playSynth();
-
-
     pcdone = false;
     mcdone = false;
 
   }
       grabbed = false;
+
   }
 
   function mouseDragged()
 {
   // print ('dragged');
     if (grabbed == "shape1")
+
     {
     shapeX = mouseX;
     shapeY = mouseY;
     }
 
   if (grabbed == "shape2")
+
     {
     shapeX2 = mouseX;
     shapeY2 = mouseY;
