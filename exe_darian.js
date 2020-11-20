@@ -10,10 +10,14 @@ let letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "
 
 // load "keyboard" into sketch
 var keyboard;
+var pat
+
 function preload() {
 
   keyboard = loadImage("assets/keyboard_trans.png");
 }
+
+// letter function
 
 function setup() {
   createCanvas(700, 400);
@@ -25,11 +29,25 @@ function setup() {
 
   synth = new p5.PolySynth();
 
+  strokeWeight(2);
+  stroke(90);
+  fill(0, 102, 153);
+  //textSize(20);
   textSize(40);
   textFont('Georgia');
-  text('type the letters below', 160, 50)
+  text('Type the Letters Below', 155, 50)
   textSize(30)
   text('Score', 600, 50)
+  text('Goal', 40, 50)
+  text('10', 55, 90)
+  // Letter rectangle
+  stroke('black');
+  strokeWeight(2)
+  fill('#AAF0D1');
+  rect(195, 65, 295, 75)
+  // Score rectangle
+  rect(610, 60, 50, 50)
+  noStroke();
 
   // letter function  (draw)
   updateLetter();
@@ -44,7 +62,7 @@ function playSynth() {
   // time from now (in seconds)
   let time = 0;
   // note duration (in seconds)
-  let dur = 1/6;
+  let dur = 0.4
 
   synth.play('G3', velocity, time, dur);
 }
@@ -52,15 +70,25 @@ function playSynth() {
 // update letters after correct input
 function updateLetter() {
   // letter function  (draw)
-   fill('#2ab56c');
+  strokeWeight(2);
+  stroke(90);
+  fill('#00BFFF');
   textSize(60)
-  noStroke();
-    word = random(letter); // select random word
-    text(word, 220, 120); // draw the letter
-    word = word + random(letter); // select random word
+    word = random(letter);          // select random word
+    text(word, 220, 120);           // draw the letter
+    word = word + random(letter);   // select random word
     text(word.charAt(1), 320, 120); // draw the letter
-    word = word + random(letter); // select random word
+    word = word + random(letter);   // select random word
     text(word.charAt(2), 420, 120); // draw the letter
+  lettersCorrect = 0;
+
+    //let wordX = 220
+    //for(let i = 0; i < 3; i++) {
+    //word = word + random(letter)
+    //text(word, wordX, 120);
+    //wordX += 100
+    //}
+
   lettersCorrect = 0;
 }
 
@@ -70,6 +98,9 @@ function keyTyped() {
     for(let i = 0; i < word.length; i++) {
       if(key === word.charAt(i)) {
         fill('black');
+         strokeWeight(2);
+         stroke(90);
+         fill("grey");
         textSize(60)
         text(key, keyX + (i * 100), 120);
         lettersCorrect++;
@@ -80,31 +111,48 @@ function keyTyped() {
     parent.score_from_activity = score;
     stroke('black');
     strokeWeight(2)
+
     fill('#AAF0D1');
     rect(195, 65, 295, 75)
     rect(610, 60, 50, 50)
     updateLetter();
+    strokeWeight(2);
+    stroke(90);
+    fill('#00BFFF');
     textSize(30)
-    noStroke();
     text (score, 625, 90)
     playSynth();
   }
+   if(score === 10) {
+    gameWin()
+   }
 }
 
+function gameWin() {
+    background('#AAF0D1')
+    textSize(60)
+    text('Good Job!', 200, 200);
+  //  text('Congratulations!', 120, 120); // draw the letter
+    textSize(30)
+    text('Press "Next" to Continue', 180, 240);
+    synth.play('C4', 0.5, 1, 0.4)
+  //image(pat, 220, 150)
+  }
 
-// letter function
 function draw() {
 }
 
 //key function
 function keyPressed() {
-  if (keyCode === SHIFT || keyCode === CONTROL || keyCode === TAB) {
-    // If it's not a letter key, clear the screen
+  if (keyCode === SHIFT || keyCode === CONTROL || keyCode === TAB || keyCode === 20 || keyCode === ENTER || keyCode === ALT       || keyCode === BACKSPACE || keyCode === 220 || keyCode === 188 || keyCode === 190 || keyCode === 191 || keyCode ===         186 || keyCode === 222 || keyCode === 219 || keyCode === 221 || keyCode === 91 || keyCode === 93 || keyCode === 192) {
+    // If it's not a letter key, do nothing / IN PROGRESS
   } else {
     noStroke()
-     fill('#AAF0D1')
+    fill('#AAF0D1')
     rect(315, 145, 60, 65)
-    fill('black')
+    strokeWeight(2);
+    stroke(90);
+    fill (0, 102, 153);
     textSize(50)
     text(key, 320, 190); // Draw at coordinate (20,75)
   }

@@ -170,10 +170,11 @@ function draw()
   noStroke();
 
   // text (score, 625, 90);
- strokeWeight(2);
+  strokeWeight(2);
   stroke(90);
   fill (0, 102, 153);
   text (score, 627, 97);
+
   strokeWeight(2);
   stroke(90);
   text('Score', 595, 50);
@@ -182,9 +183,8 @@ function draw()
       {
       // similar to mouse released
         background('#AAF0D1')
-        line(350, 0, 175, 700);
         text('Great Job on Getting 10 in a Row!', 130, 120);
-        text('Click "Next" for the next screen', 130, 300);
+        text('Click "Next" for the next screen', 155, 300);
       }
 }
 
@@ -219,6 +219,7 @@ function mousePressed ()
 
 if (pcdone == true && mcdone== true)
   {
+
     score++;
     parent.score_from_activity = score;
     playSynth();

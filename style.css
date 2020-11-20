@@ -57,9 +57,12 @@ div.side-bar {
   display: inline-block;
   height: 600px;
   width: 200px;
-  padding: 100px 10px 0 7px;
+  padding: 10px 10px 0 7px;
   margin: 0 30px 0 0;
   border-right: 2px solid #A1BFB2;
+}
+img.logo {
+  margin-bottom: 40px;
 }
 div.exe-contents {
   display: inline-block;
