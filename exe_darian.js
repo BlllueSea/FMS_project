@@ -124,20 +124,13 @@ function keyTyped() {
     playSynth();
   }
    if(score === 10) {
-    gameWin()
+     fill (0, 102, 153);
+     background('#AAF0D1')
+     text('Great Job on Getting 10 in a Row!', 130, 120);
+     text('Click "Next" for the next screen', 155, 300);
    }
 }
 
-function gameWin() {
-    background('#AAF0D1')
-    textSize(60)
-    text('Good Job!', 200, 200);
-  //  text('Congratulations!', 120, 120); // draw the letter
-    textSize(30)
-    text('Press "Next" to Continue', 180, 240);
-    synth.play('C4', 0.5, 1, 0.4)
-  //image(pat, 220, 150)
-  }
 
 function draw() {
 }
