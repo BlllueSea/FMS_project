@@ -12,7 +12,7 @@ let letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "
 
 // preload "keyboard" into sketch
 function preload() {
-  keyboard = loadImage("keyboard_trans.png");
+  keyboard = loadImage("assets/keyboard_trans.png");
 }
 
 // setup background
