@@ -161,7 +161,7 @@ function draw()
   fill ("magenta")
   ellipse(shapeX2, shapeY2, diameter2, diameter2);
 
-  //rec
+  //rectangle
   stroke('black');
   strokeWeight(2)
   fill('#AAF0D1');
@@ -173,12 +173,14 @@ function draw()
   strokeWeight(2);
   stroke(90);
   fill (0, 102, 153);
+
   text (score, 627, 97);
 
   strokeWeight(2);
   stroke(90);
   text('Score', 595, 50);
 
+  //congrats page
  if (score == 10)
       {
       // similar to mouse released
@@ -187,7 +189,7 @@ function draw()
         text('Click "Next" for the next screen', 155, 300);
       }
 }
-
+// score board
 function mousePressed ()
 
 {
@@ -219,7 +221,7 @@ function mousePressed ()
 
 if (pcdone == true && mcdone== true)
   {
-
+  // sound to play when point is gained
     score++;
     parent.score_from_activity = score;
     playSynth();
